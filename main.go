@@ -30,6 +30,15 @@ func pyError() error {
 
 	return fmt.Errorf("%s", err)
 }
+
+func close(fn *C.PyObject) {
+	if fn == nil {
+		return
+	}
+	C.py_decref(fn)
+	fn = nil
+}
+
 func main() {
 	Py_Initialize()
 	defer Py_Finalize()
@@ -63,14 +72,6 @@ func importPyFunc(moduleName, symbol string) (*C.PyObject, error) {
 	}
 
 	return fn.object, nil
-}
-
-func close(fn *C.PyObject) {
-	if fn == nil {
-		return
-	}
-	C.py_decref(fn)
-	fn = nil
 }
 
 func callPyFunc(fun *C.PyObject, x float64, y float64) (float64, error) {

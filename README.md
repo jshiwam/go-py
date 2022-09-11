@@ -10,3 +10,5 @@ This project just calls a function written in Python(i.e Rectangle.py) from Gola
 `locate python3.pc`
 
 - run `make find_area`
+
+[Here is a bolgpost](https://jshiwam.github.io/go-c-python/2022/09/11/gotopy.html) that explains this project.
